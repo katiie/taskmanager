@@ -1,0 +1,26 @@
+<h1>My Tasks</h1>
+<p>Find me in app/views/tasks/index.html.erb</p>
+<div class="tile is-ancestor">
+    <div class="tile">
+    
+        <% @tasks.each do |task| %>
+            <div class="tile">
+            <%= task.title %>
+           <a href="/tasks/<%= task.id %>">
+        <%= task.title %>
+      </a>
+      <a href="<% task_path(task) %>" ></a>
+            </div>
+        <% end %>
+        <%= link_to task.title, task %>
+    
+    </div>
+</div>
+  
+  <div class="tile">
+    <!-- Add content or other tiles -->
+  </div>
+  <div class="tile">
+    <!-- Add content or other tiles -->
+  </div>
+</div>
