@@ -1,0 +1,36 @@
+<div class="title">
+  <h2><%= name%> </h2>
+</div>
+<%= form_with model: @task, class:"box" do |form| %>
+  <div>
+    <%= form.label :title, class:"label" %><br>
+    <%= form.text_field :title, class:"input" %>
+    <% @task.errors.full_messages_for(:title).each do |message| %>
+      <div class="has-text-danger"><%= message %></div>
+    <% end %>
+  </div>
+  <br/>
+  <div>
+    <%= form.label :description, class:"label" %><br>
+    <%= form.text_area :description, class:"textarea" %>
+    <% @task.errors.full_messages_for(:description).each do |message| %>
+      <div class="has-text-danger"><%= message %></div>
+    <% end %>
+  </div>
+  <br/>
+  <div>
+    <%= form.label :duedate, class:"label" %><br>
+    <%= form.datetime_field :duedate, class:"input" ,type:"date" %>
+    <% @task.errors.full_messages_for(:duedate).each do |message| %>
+      <div class="has-text-danger"><%= message %></div>
+    <% end %>
+  </div>
+  <br/>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<br/>
+<div>
+  <%= link_to "Back to tasks", tasks_path %>
+</div>
