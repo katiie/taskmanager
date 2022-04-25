@@ -2,16 +2,16 @@
   <!-- Left side -->
   <div class="level-left">
     <div class="level-item ">
-      <div class="field has-addons">
+      <form class="field has-addons">
+
         <p class="control">
-          <input class="input" type="text" placeholder="Find a task">
+          <%= text_field_tag(:search, params[:search], class:"input", placeholder:"Find a task") %>
         </p>
         <p class="control">
-          <button class="button">
-            Search
-          </button>
+          <%= submit_tag 'Search' ,class:"button"%>
         </p>
-      </div>
+        
+      </form>
     </div>
   </div>
   <!-- Right side -->
@@ -20,6 +20,7 @@
   </div>
 </nav>
 <div class="taskcontainer">
+  <% if  @tasks != nil %>
   <% @tasks.each do |task| %>
     <div class="card">
       <header class="card-header">
@@ -42,9 +43,10 @@
           </div>
           
           <footer class="card-footer">
-            <%= link_to "Edit", edit_task_path(task.id) ,class:"card-footer-item is-success"%>
-            <%= link_to "Delete", task, method: :delete, data: { confirm: "Really?" },class:"card-footer-item is-success" %>
+              <%= link_to "Edit", edit_task_path(task.id) ,class:"card-footer-item is-success"%>
+              <%= link_to "Delete", task, method: :delete,  data: { confirm: "Really?" }, class:"card-footer-item is-success", id:"deleteBtn" %>
           </footer>
         </div>
       <% end %>
+       <% end %>
     </div>

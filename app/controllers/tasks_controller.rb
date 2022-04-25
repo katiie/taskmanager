@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   def index
-    @tasks = Task.all
+    @tasks = params[:search] ? Task.task_search(params[:search]) : Task.all
   end
 
   # GET /authors/1/edit
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
     end
   end
 
-  private
+  private    
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
