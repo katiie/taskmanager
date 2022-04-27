@@ -3,14 +3,12 @@
   <div class="level-left">
     <div class="level-item ">
       <form class="field has-addons">
-
         <p class="control">
           <%= text_field_tag(:search, params[:search], class:"input", placeholder:"Find a task") %>
         </p>
         <p class="control">
           <%= submit_tag 'Search' ,class:"button"%>
         </p>
-        
       </form>
     </div>
   </div>
@@ -19,34 +17,34 @@
     <p class="level-item"><%= link_to "New", new_task_path() ,class:"button is-success"%></p>
   </div>
 </nav>
+
 <div class="taskcontainer">
   <% if  @tasks != nil %>
-  <% @tasks.each do |task| %>
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          <%= task.title %>
-        </p>
-        <a href="#" class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </a>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          <%= task.description.length > 27 ? task.description[0..27] + ".." : task.description %>
-          <br>
-          <br>
-          <time datetime="2016-1-1"><span>Due<span> <%= task.duedate %></time>
+    <% @tasks.each do |task| %>
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <%= task.title %>
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <%= task.description.length > 27 ? task.description[0..27] + ".." : task.description %>
+            <br>
+            
+            <time><span>Due<span> <%= task.duedate %></time>
+              </div>
             </div>
-          </div>
-          
-          <footer class="card-footer">
+            <footer class="card-footer">
               <%= link_to "Edit", edit_task_path(task.id) ,class:"card-footer-item is-success"%>
-              <%= link_to "Delete", task, method: :delete,  data: { confirm: "Really?" }, class:"card-footer-item is-success", id:"deleteBtn" %>
-          </footer>
-        </div>
+              <%= link_to "Delete", task , class:"card-footer-item is-success", data: {turbo_method: :delete, turbo_confirm: 'Are you sure??'} %>
+            </footer>
+          </div>
+        <% end %>
       <% end %>
-       <% end %>
     </div>

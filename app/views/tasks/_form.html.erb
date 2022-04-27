@@ -20,7 +20,7 @@
   <br/>
   <div>
     <%= form.label :duedate, class:"label" %><br>
-    <%= form.datetime_field :duedate, class:"input" ,type:"date" %>
+    <%= form.datetime_field :duedate, class:"input" %>
     <% @task.errors.full_messages_for(:duedate).each do |message| %>
       <div class="has-text-danger"><%= message %></div>
     <% end %>
